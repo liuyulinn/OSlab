@@ -52,7 +52,10 @@ dumbfork(void)
 	// will return 0 instead of the envid of the child.
 	envid = sys_exofork();
 	if (envid < 0)
+	{
+		panic("sys_exofork: %d", envid);
 		panic("sys_exofork: %e", envid);
+	}
 	if (envid == 0) {
 		// We're the child.
 		// The copied value of the global variable 'thisenv'
